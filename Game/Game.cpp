@@ -72,7 +72,7 @@ namespace ApplesGame
 	{
 		InitPlayer(game.player, game);
 
-		// init apples number
+		// init random total apples number
 		game.applesCount = NUM_APPLES + rand() % NUM_APPLES;
 
 		ResetApplesArray(game);
