@@ -172,14 +172,8 @@ namespace ApplesGame
 		}
 	}
 
-	void UpdateGame(Game& game, const float deltaTime, sf::RenderWindow& window)
+	void CheckCollisionWithApples(Game& game, const float deltaTime)
 	{
-		HandlePlayerInput(game);
-
-		UpdatePlayer(game, deltaTime);
-
-		CheckCollisionWithBorders(game);
-
 		// check player collision with apples
 		for (auto i = game.apples.begin(); i != game.apples.end();)
 		{
@@ -216,6 +210,17 @@ namespace ApplesGame
 				i++;
 			}
 		}
+	}
+
+	void UpdateGame(Game& game, const float deltaTime, sf::RenderWindow& window)
+	{
+		HandlePlayerInput(game);
+
+		UpdatePlayer(game, deltaTime);
+
+		CheckCollisionWithBorders(game);
+
+		CheckCollisionWithApples(game, deltaTime);
 	}
 
 	void DrawGame(Game& game, sf::RenderWindow& window)
