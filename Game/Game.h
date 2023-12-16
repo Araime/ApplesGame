@@ -23,7 +23,7 @@ namespace ApplesGame
 
 		// init game over timer handlers
 		sf::Clock gameoverTimer;
-		float current_time = 0.f;
+		float newTime = 0.f;
 		float pastTime = 0.f;
 
 		// init scores

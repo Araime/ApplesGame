@@ -137,9 +137,13 @@ namespace ApplesGame
 		// check collision with screen borders
 		if (isCollideWithBorders(game.player.position))
 		{
-			// stop game and update score table with game over text
+			// update score table with game over text
 			game.scoreTable.setPosition(GAMEOVER_X_COORD, TEXT_COORD_Y);
+
+			// note the time
 			game.pastTime = game.gameoverTimer.getElapsedTime().asSeconds();
+
+			// change game state
 			game.gameState = GameState::GameOver;
 
 			// stop music
@@ -190,8 +194,8 @@ namespace ApplesGame
 
 	void DrawGameOver(Game& game, sf::RenderWindow& window)
 	{
-		// update gameover timer
-		game.current_time = game.gameoverTimer.getElapsedTime().asSeconds();
+		// update newTime timer
+		game.newTime = game.gameoverTimer.getElapsedTime().asSeconds();
 
 		window.clear();
 
@@ -200,7 +204,8 @@ namespace ApplesGame
 
 		window.display();
 
-		if (game.current_time - game.pastTime > GAMEOVER_COOLDOWN_TIME)
+		// check that enough time has passed
+		if (game.newTime - game.pastTime > GAMEOVER_COOLDOWN_TIME)
 		{
 			// update score text
 			game.scoreTable.setString(MAIN_MENU_TEXT);
