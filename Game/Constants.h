@@ -17,17 +17,26 @@ namespace ApplesGame
 	const float ACCELERATION = 10000.f; // pixels  per seconds
 	const int NUM_APPLES = 30;
 	const float APPLE_SIZE = 25.f;
+	const float GAMEOVER_COOLDOWN_TIME = 3.f;
+	const float MENU_BUTTON_COOLDOWN = 0.3f;
+
+	// init text coordinates
 	const int OFFSET = 20;
 	const float TABLE_X = SCREEN_WIDTH / 2.f - 70.f; // score table x coordinate
 	const float TABLE_Y = 5.f; // score table y coordinate
-	const float TEXT_COORD_X = 255; // menu text x coordinate for score table
-	const float TEXT_COORD_Y = 250; // menu text y coordinate for score table
+	const float TEXT_COORD_X = 255.f; // menu text x coordinate for score table
+	const float TEXT_COORD_Y = 250.f; // menu text y coordinate for score table
 	const float GAMEOVER_X_COORD = 330; // game over score display x coord
-	const float GAMEOVER_COOLDOWN_TIME = 3.f;
+	const float POPUP_X_COORD = 150.f;
+	const float POPUP_Y_COORD = 430.f;
+	const float FIRST_X_COORD = 50.f;
+	const float FIRST_Y_COORD = 500.f;
+	const float SECOND_X_COORD = 500.f;
+	const float SECOND_Y_COORD = 500.f;
 
 	//  init all game texts
-	const std::string MAIN_MENU_TEXT = ("Press Arrows \nfor changing direction\n\npress SPACE to start");
-	const std::string OPTIONS_POPUP = ("Press 1 and 2 for switch MODE");
+	const std::string MAIN_MENU_TEXT = ("Press Arrows \nfor changing direction\n\nPress SPACE to start");
+	const std::string OPTIONS_POPUP = ("\tKeys 1 and 2 for switch MODE:");
 	const std::string FIRST_OPTION_ON = ("Infinite apples - ON");
 	const std::string FIRST_OPTION_OFF = ("Infinite apples - OFF");
 	const std::string SECOND_OPTION_ON = ("Player acceleration - ON");

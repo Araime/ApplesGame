@@ -23,7 +23,7 @@ namespace ApplesGame
 		GameState gameState = GameState::Menu;
 
 		// init game over timer handlers
-		sf::Clock gameoverTimer;
+		sf::Clock gameTimer;
 		float newTime = 0.f;
 		float pastTime = 0.f;
 

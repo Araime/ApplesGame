@@ -17,9 +17,9 @@ namespace ApplesGame
 
 	void InitGameMode(GameMode& gameMode);
 
-	void ChangeMode();
+	void ChangeMode(GameMode& gameMode, int bit);
 
-	void UpdateGameMode();
+	void UpdateGameMode(GameMode& gameMode);
 
-	void DrawGameMode();
+	void DrawGameMode(GameMode& gameMode, sf::RenderWindow& window);
 }

@@ -39,6 +39,9 @@ namespace ApplesGame
 		game.scoreTable.setPosition(TEXT_COORD_X, TEXT_COORD_Y);
 
 		InitGameMode(game.gameMode);
+
+		// update last time
+		game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
 	}
 
 	void DrawTitleScreen(Game& game, sf::RenderWindow& window)
@@ -47,6 +50,8 @@ namespace ApplesGame
 
 		window.draw(game.menuBG.sprite);
 		window.draw(game.scoreTable);
+
+		DrawGameMode(game.gameMode, window);
 
 		window.display();
 
@@ -87,7 +92,7 @@ namespace ApplesGame
 
 		// update game variables
 		game.gameState = GameState::Game;
-		game.pastTime = game.gameoverTimer.getElapsedTime().asSeconds();
+		game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
 
 		// init and play game music
 		game.gameMusic.music.openFromFile(SND_PATH + "level5.ogg");
@@ -100,9 +105,24 @@ namespace ApplesGame
 		{
 		case GameState::Menu:
 		{
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+			game.newTime = game.gameTimer.getElapsedTime().asSeconds();
+
+			if (game.newTime - game.pastTime > MENU_BUTTON_COOLDOWN)
 			{
-				RestartGame(game);
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+				{
+					RestartGame(game);
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+				{
+					ChangeMode(game.gameMode, 0);
+					game.pastTime = game.newTime;
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+				{
+					ChangeMode(game.gameMode, 1);
+					game.pastTime = game.newTime;
+				}
 			}
 			break;
 		}
@@ -144,7 +164,7 @@ namespace ApplesGame
 			game.scoreTable.setPosition(GAMEOVER_X_COORD, TEXT_COORD_Y);
 
 			// note the time
-			game.pastTime = game.gameoverTimer.getElapsedTime().asSeconds();
+			game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
 
 			// change game state
 			game.gameState = GameState::GameOver;
@@ -198,7 +218,7 @@ namespace ApplesGame
 	void DrawGameOver(Game& game, sf::RenderWindow& window)
 	{
 		// update newTime timer
-		game.newTime = game.gameoverTimer.getElapsedTime().asSeconds();
+		game.newTime = game.gameTimer.getElapsedTime().asSeconds();
 
 		window.clear();
 
