@@ -21,10 +21,16 @@ namespace ApplesGame
 		// init game state
 		GameState gameState = GameState::Menu;
 
-		// game over timer
+		// init game over timer handlers
 		sf::Clock gameoverTimer;
 		float current_time = 0.f;
-		float last_time = 0.f;
+		float pastTime = 0.f;
+
+		// init scores
+		int playerScore = 0;
+
+		// init apples variable
+		int applesCount = 1;
 
 		// create BG's
 		BG menuBG;
@@ -36,12 +42,12 @@ namespace ApplesGame
 		Sound deathSnd;
 		Music gameMusic;
 
-		// create player and apples array
+		// create player
 		Player player;
-		Apple apples[NUM_APPLES];
 
-		// init scores
-		int playerScore = 0;
+		// create apple and apples array
+		Apple apple;
+		std::vector<Apple> apples;
 
 		// create score table
 		std::string score = "SCORE: ";
@@ -59,6 +65,8 @@ namespace ApplesGame
 	void InitGame(Game& game);
 
 	void DrawTitleScreen(Game& game, sf::RenderWindow& window);
+
+	void ResetApplesArray(Game& game);
 
 	void RestartGame(Game& game);
 

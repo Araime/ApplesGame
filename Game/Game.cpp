@@ -1,6 +1,5 @@
 #include "Game.h"
 #include <cassert>
-#include <iostream>
 
 namespace ApplesGame
 {
@@ -51,24 +50,41 @@ namespace ApplesGame
 		HandlePlayerInput(game);
 	}
 
+	void ResetApplesArray(Game& game)
+	{
+		// reset array size
+		game.apples.resize(1);
+
+		// create apples array
+		for (int i = 0; i < game.applesCount; i++)
+		{
+			game.apples.push_back(game.apple);
+		}
+
+		// init apples shapes and positions
+		for (int i = 0; i < game.applesCount; i++)
+		{
+			InitApple(game.apples[i], game);
+		}
+	}
+
 	void RestartGame(Game& game)
 	{
 		InitPlayer(game.player, game);
 
-		// init apples shapes and positions
-		for (int i = 0; i < NUM_APPLES; i++)
-		{
-			InitApple(game.apples[i], game);
-		}
+		// init apples number
+		game.applesCount = NUM_APPLES + rand() % NUM_APPLES;
+
+		ResetApplesArray(game);
 
 		// update game score table
 		game.playerScore = 0;
 		game.scoreTable.setPosition(TABLE_X, TABLE_Y);
 		game.scoreTable.setString(game.score + std::to_string(game.playerScore));
 
-		// init game over varianles
+		// init game over variables
 		game.gameState = GameState::Game;
-		game.last_time = game.gameoverTimer.getElapsedTime().asSeconds();
+		game.pastTime = game.gameoverTimer.getElapsedTime().asSeconds();
 
 		// init and play game music
 		game.gameMusic.music.openFromFile(SND_PATH + "level5.ogg");
@@ -123,7 +139,7 @@ namespace ApplesGame
 		{
 			// stop game and update score table with game over text
 			game.scoreTable.setPosition(GAMEOVER_X_COORD, TEXT_COORD_Y);
-			game.last_time = game.gameoverTimer.getElapsedTime().asSeconds();
+			game.pastTime = game.gameoverTimer.getElapsedTime().asSeconds();
 			game.gameState = GameState::GameOver;
 
 			// stop music
@@ -184,7 +200,7 @@ namespace ApplesGame
 
 		window.display();
 
-		if (game.current_time - game.last_time > GAMEOVER_COOLDOWN_TIME)
+		if (game.current_time - game.pastTime > GAMEOVER_COOLDOWN_TIME)
 		{
 			// update score text
 			game.scoreTable.setString(MAIN_MENU_TEXT);
