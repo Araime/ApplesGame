@@ -18,11 +18,11 @@ namespace ApplesGame
 	const int NUM_APPLES = 30;
 	const float APPLE_SIZE = 25.f;
 	const int OFFSET = 20;
-	const float TABLE_X = SCREEN_WIDTH / 2.f - 70.f; // table x coordinate
-	const float TABLE_Y = 5.f; // table y coordinate
-	const float TEXT_COORD_X = 255; // game text x coordinate for score table
-	const float TEXT_COORD_Y = 300; // game text y coordinate for score table
-	const float GAMEOVER_X_COORD = 350; // game over score display x coord
+	const float TABLE_X = SCREEN_WIDTH / 2.f - 70.f; // score table x coordinate
+	const float TABLE_Y = 5.f; // score table y coordinate
+	const float TEXT_COORD_X = 255; // menu text x coordinate for score table
+	const float TEXT_COORD_Y = 300; // menu text y coordinate for score table
+	const float GAMEOVER_X_COORD = 330; // game over score display x coord
 	const float GAMEOVER_COOLDOWN_TIME = 3.f;
 	const std::string MAIN_MENU_TEXT = ("Press Arrows \nfor changing direction\n\nPress SPACE to start game");
 	const std::string GAME_OVER_TEXT = ("Press SPACE to restart"); // game over text
