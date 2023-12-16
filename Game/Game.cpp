@@ -212,6 +212,24 @@ namespace ApplesGame
 		}
 	}
 
+	void CheckRemainingApples(Game& game)
+	{
+		if (game.apples.size() == 0)
+		{
+			// update score table with game over text
+			game.scoreTable.setPosition(GAMEOVER_X_COORD, TEXT_COORD_Y);
+
+			// note the time
+			game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
+
+			// change game state
+			game.gameState = GameState::GameOver;
+
+			// stop music
+			game.gameMusic.music.stop();
+		}
+	}
+
 	void UpdateGame(Game& game, const float deltaTime, sf::RenderWindow& window)
 	{
 		HandlePlayerInput(game);
@@ -221,6 +239,8 @@ namespace ApplesGame
 		CheckCollisionWithBorders(game);
 
 		CheckCollisionWithApples(game, deltaTime);
+
+		CheckRemainingApples(game);
 	}
 
 	void DrawGame(Game& game, sf::RenderWindow& window)

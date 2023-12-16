@@ -78,7 +78,9 @@ namespace ApplesGame
 
 	void CheckCollisionWithBorders(Game& game);
 
-	void CheckCollisionWithApples(Game& game);
+	void CheckCollisionWithApples(Game& game, const float deltaTime);
+
+	void CheckRemainingApples(Game& game);
 
 	void UpdateGame(Game& game, const float deltaTime, sf::RenderWindow& window);
 
