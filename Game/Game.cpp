@@ -53,7 +53,7 @@ namespace ApplesGame
 	void ResetApplesArray(Game& game)
 	{
 		// reset array size
-		game.apples.resize(1);
+		game.apples.resize(0);
 
 		// create apples array
 		for (int i = 0; i < game.applesCount; i++)
