@@ -24,6 +24,6 @@ namespace ApplesGame
 	const float TEXT_COORD_Y = 300; // menu text y coordinate for score table
 	const float GAMEOVER_X_COORD = 330; // game over score display x coord
 	const float GAMEOVER_COOLDOWN_TIME = 3.f;
-	const std::string MAIN_MENU_TEXT = ("Press Arrows \nfor changing direction\n\nPress SPACE to start game");
+	const std::string MAIN_MENU_TEXT = ("Press Arrows \nfor changing direction\n\nSwitch MODE and\npress SPACE to start");
 	const std::string GAME_OVER_TEXT = ("Press SPACE to restart"); // game over text
 }
