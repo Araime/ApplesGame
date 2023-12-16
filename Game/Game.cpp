@@ -151,13 +151,8 @@ namespace ApplesGame
 		}
 	}
 
-	void UpdateGame(Game& game, const float deltaTime, sf::RenderWindow& window)
+	void CheckCollisionWithBorders(Game& game)
 	{
-		HandlePlayerInput(game);
-
-		UpdatePlayer(game, deltaTime);
-
-		// check collision with screen borders
 		if (isCollideWithBorders(game.player.position))
 		{
 			// update score table with game over text
@@ -175,25 +170,50 @@ namespace ApplesGame
 			// play death snd
 			game.deathSnd.sound.play();
 		}
+	}
+
+	void UpdateGame(Game& game, const float deltaTime, sf::RenderWindow& window)
+	{
+		HandlePlayerInput(game);
+
+		UpdatePlayer(game, deltaTime);
+
+		CheckCollisionWithBorders(game);
 
 		// check player collision with apples
-		for (auto& apple : game.apples)
+		for (auto i = game.apples.begin(); i != game.apples.end();)
 		{
+			Apple& apple = *i;
 			if (IsCollideWithApple(game.player.position, PLAYER_SIZE / 2.f, apple.position, APPLE_SIZE / 2.f))
 			{
-				// respawn aplle in new coordinates
-				apple.position = GetRandomPositionInScreen(SCREEN_WIDTH, SCREEN_HEIGHT, OFFSET);
-				apple.sprite.setPosition(apple.position.x, apple.position.y);
+				// check apples option
+				if (game.gameMode.mode & (1 << 0))
+				{
+					// respawn aplle in new coordinates
+					apple.position = GetRandomPositionInScreen(SCREEN_WIDTH, SCREEN_HEIGHT, OFFSET);
+					apple.sprite.setPosition(apple.position.x, apple.position.y);
+				}
+				else
+				{
+					i = game.apples.erase(i);
+				}
 
 				// count player scores
 				++game.playerScore;
 				game.scoreTable.setString(game.score + std::to_string(game.playerScore));
 
-				// increase the player's speed
-				game.player.speed += ACCELERATION * deltaTime;
+				// increase the player's speed if option enable
+				if (game.gameMode.mode & (1 << 1))
+				{
+					game.player.speed += ACCELERATION * deltaTime;
+				}
 
 				// play pickup snd
 				game.pickUpSnd.sound.play();
+			}
+			else
+			{
+				i++;
 			}
 		}
 	}
