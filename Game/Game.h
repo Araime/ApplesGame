@@ -41,6 +41,8 @@ namespace ApplesGame
 		// create sounds and music
 		Sound pickUpSnd;
 		Sound deathSnd;
+		Sound selectSND;
+		Sound unselectSND;
 		Music gameMusic;
 
 		// create player

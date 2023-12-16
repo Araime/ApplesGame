@@ -20,9 +20,14 @@ namespace ApplesGame
 		game.deathSnd.buffer.loadFromFile(SND_PATH + "Death.wav");
 		game.deathSnd.sound.setBuffer(game.deathSnd.buffer);
 		game.deathSnd.sound.setVolume(30.f);
+
 		game.pickUpSnd.buffer.loadFromFile(SND_PATH + "AppleEat.wav");
 		game.pickUpSnd.sound.setBuffer(game.pickUpSnd.buffer);
 		game.pickUpSnd.sound.setVolume(50.f);
+
+		game.selectSND.buffer.loadFromFile(SND_PATH + "Select.wav");
+		game.selectSND.sound.setBuffer(game.selectSND.buffer);
+		game.selectSND.sound.setVolume(70.f);
 
 		// init and play menu music
 		game.gameMusic.music.openFromFile(SND_PATH + "credits.ogg");
@@ -116,11 +121,21 @@ namespace ApplesGame
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 				{
 					ChangeMode(game.gameMode, 0);
+
+					// play select sound
+					game.selectSND.sound.play();
+
+					// note the time
 					game.pastTime = game.newTime;
 				}
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 				{
 					ChangeMode(game.gameMode, 1);
+
+					// play select sound
+					game.selectSND.sound.play();
+
+					// note the time
 					game.pastTime = game.newTime;
 				}
 			}
