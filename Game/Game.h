@@ -6,6 +6,7 @@
 #include "Apple.h"
 #include "Background.h"
 #include "Sound.h"
+#include "GameMode.h"
 
 namespace ApplesGame
 {
@@ -53,6 +54,9 @@ namespace ApplesGame
 		std::string score = "SCORE: ";
 		sf::Font font;
 		sf::Text scoreTable;
+
+		// create game mode
+		GameMode gameMode;
 
 		// create textures
 		sf::Texture playerTexture;

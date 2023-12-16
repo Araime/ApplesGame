@@ -31,11 +31,14 @@ namespace ApplesGame
 		// init game font
 		game.font.loadFromFile(FONTS_PATH + "Roboto-Bold.ttf");
 
+		// init score table text
 		game.scoreTable.setFont(game.font);
 		game.scoreTable.setCharacterSize(30);
 		game.scoreTable.setFillColor(sf::Color::Yellow);
 		game.scoreTable.setString(MAIN_MENU_TEXT);
 		game.scoreTable.setPosition(TEXT_COORD_X, TEXT_COORD_Y);
+
+		InitGameMode(game.gameMode);
 	}
 
 	void DrawTitleScreen(Game& game, sf::RenderWindow& window)

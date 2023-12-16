@@ -139,6 +139,7 @@
     <ClCompile Include="Game\Background.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Game\GameMain.cpp" />
+    <ClCompile Include="Game\GameMode.cpp" />
     <ClCompile Include="Game\Math.cpp" />
     <ClCompile Include="Game\Player.cpp" />
   </ItemGroup>
@@ -147,6 +148,7 @@
     <ClInclude Include="Game\Background.h" />
     <ClInclude Include="Game\Constants.h" />
     <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="Game\GameMode.h" />
     <ClInclude Include="Game\Math.h" />
     <ClInclude Include="Game\Player.h" />
     <ClInclude Include="Game\Sound.h" />
