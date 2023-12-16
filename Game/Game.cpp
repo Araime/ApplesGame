@@ -82,7 +82,7 @@ namespace ApplesGame
 		game.scoreTable.setPosition(TABLE_X, TABLE_Y);
 		game.scoreTable.setString(game.score + std::to_string(game.playerScore));
 
-		// init game over variables
+		// update game variables
 		game.gameState = GameState::Game;
 		game.pastTime = game.gameoverTimer.getElapsedTime().asSeconds();
 
