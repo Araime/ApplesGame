@@ -5,7 +5,7 @@
 заканчивается. Пользователь может настраивать режим игры. В игре 
 есть звуки и музыка.
 
-https://github.com/Araime/ApplesGame/assets/82653875/5559d112-f754-4b3a-a537-9638653692cd
+https://github.com/Araime/ApplesGame/assets/82653875/3703863d-0b4a-4495-89d5-0d33d7950c6d
 
 ## Обновления
 
