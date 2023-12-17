@@ -31,7 +31,7 @@ namespace ApplesGame
 	const float POPUP_Y_COORD = 430.f;
 	const float FIRST_X_COORD = 50.f;
 	const float FIRST_Y_COORD = 500.f;
-	const float SECOND_X_COORD = 500.f;
+	const float SECOND_X_COORD = 450.f;
 	const float SECOND_Y_COORD = 500.f;
 
 	//  init all game texts
