@@ -211,7 +211,7 @@ namespace ApplesGame
 				++game.playerScore;
 				game.scoreTable.setString(game.score + std::to_string(game.playerScore));
 
-				// increase the player's speed if option enable
+				// increase the player's speed if option is enable
 				if (game.gameMode.mode & (1 << 1))
 				{
 					game.player.speed += ACCELERATION * deltaTime;
