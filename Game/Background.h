@@ -5,13 +5,13 @@
 
 namespace ApplesGame
 {
+	struct Game;
+
 	struct BG
 	{
 		Position2D position;
 		sf::Sprite sprite;
 	};
-
-	struct Game;
 
 	void InitBG(BG& bg, const sf::Texture& texture);
 }
