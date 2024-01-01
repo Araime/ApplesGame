@@ -34,11 +34,19 @@ namespace ApplesGame
 		std::sort(std::begin(data), std::end(data), [](const TableRow& a, const TableRow& b) { return b.score < a.score; });
 	}
 
-	void DrawScoreTable(Game& game, sf::RenderWindow& window)
+	void DrawScoreTable(Game& game, sf::RenderWindow& window, float xcor, float ycor)
 	{
+		for (auto& row : game.scoreTable.data)
+		{
+			game.scoresText.setString(row.name);
+			game.scoresText.setPosition(xcor, ycor);
+			window.draw(game.scoresText);
 
-		game.scoresText.setString(game.scoreTable.data[0].name);
+			game.scoresText.setString(std::to_string(row.score));
+			game.scoresText.setPosition(xcor + TABLE_INDENT, ycor);
+			window.draw(game.scoresText);
 
-		window.draw(game.scoresText);
+			ycor += TABLE_STEP;
+		}
 	}
 }

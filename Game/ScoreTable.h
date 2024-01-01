@@ -15,13 +15,13 @@ namespace ApplesGame
 	struct ScoreTable
 	{
 		std::vector<TableRow> data;
-		int SCORE_TABLE_XCOR = 100.f;
-		int SCORE_TABLE_YCOR = 200.f;
+		float xcor = 280.f;
+		float ycor = 250.f;
 
 		void InitScoreTable(const int playerScore);
 
 		void UpdateScoreTable(const int playerScore);
 	};
 
-	void DrawScoreTable(Game& game, sf::RenderWindow& window);
+	void DrawScoreTable(Game& game, sf::RenderWindow& window, float xcor, float ycor);
 }

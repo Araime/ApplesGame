@@ -26,8 +26,8 @@ namespace ApplesGame
 	const int OFFSET = 20;
 	const float SCORE_XCOR = SCREEN_WIDTH / 2.f - 70.f; // score table x coordinate
 	const float SCORE_YCOR = 5.f; // score table y coordinate
-	const float SCORE_INDENT = 200.f;
-	const float STEP = 30.f;
+	const float TABLE_INDENT = 200.f;
+	const float TABLE_STEP = 30.f;
 	const float TEXT_COORD_X = 255.f; // menu text x coordinate for score table
 	const float TEXT_COORD_Y = 250.f; // menu text y coordinate for score table
 	const float GAMEOVER_X_COORD = 330; // game over score display x coord

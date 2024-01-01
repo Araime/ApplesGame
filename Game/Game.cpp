@@ -290,7 +290,7 @@ namespace ApplesGame
 
 		window.draw(game.blackBG.sprite);
 
-
+		DrawScoreTable(game, window, game.scoreTable.xcor, game.scoreTable.ycor);
 
 		window.display();
 
