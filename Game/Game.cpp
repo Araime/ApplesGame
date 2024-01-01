@@ -110,6 +110,28 @@ namespace ApplesGame
 		game.gameMusic.music.play();
 	}
 
+	void ChangeLevel(Game& game)
+	{
+		InitPlayer(game.player, game);
+
+		// init random total apples number
+		game.applesCount = NUM_APPLES + rand() % NUM_APPLES;
+
+		ResetApplesArray(game);
+
+		// update game scores
+		game.scoresText.setPosition(SCORE_XCOR, SCORE_YCOR);
+		game.scoresText.setString(game.score + std::to_string(game.playerScore));
+
+		// update game variables
+		game.gameState = GameState::Game;
+		game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
+
+		// init and play game music
+		game.gameMusic.music.openFromFile(SND_PATH + "level5.ogg");
+		game.gameMusic.music.play();
+	}
+
 	void HandlePlayerInput(Game& game)
 	{
 		switch (game.gameState)
@@ -164,6 +186,23 @@ namespace ApplesGame
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 			{
 				game.player.direction = PlayerDirection::Down;
+			}
+			break;
+		}
+		case GameState::GameOver:
+		{
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+			{
+				// update score text
+				game.scoresText.setString(MAIN_MENU_TEXT);
+				game.scoresText.setPosition(TEXT_COORD_X, TEXT_COORD_Y);
+
+				// init and play menu music
+				game.gameMusic.music.openFromFile(SND_PATH + "credits.ogg");
+				game.gameMusic.music.play();
+
+				// change game state
+				game.gameState = GameState::Menu;
 			}
 			break;
 		}
@@ -237,14 +276,14 @@ namespace ApplesGame
 	{
 		if (game.apples.size() == 0)
 		{
-			// update score table with game over text
-			game.scoresText.setPosition(GAMEOVER_X_COORD, TEXT_COORD_Y);
+			// update score table
+			game.scoreTable.UpdateScoreTable(game.playerScore);
 
 			// note the time
 			game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
 
 			// change game state
-			game.gameState = GameState::GameOver;
+			game.gameState = GameState::NextLevel;
 
 			// stop music
 			game.gameMusic.music.stop();
@@ -281,6 +320,24 @@ namespace ApplesGame
 		window.display();
 	}
 
+	void TransitionToNextLevel(Game& game, sf::RenderWindow& window)
+	{
+		// update newTime timer
+		game.newTime = game.gameTimer.getElapsedTime().asSeconds();
+
+		window.clear();
+
+		DrawScoreTable(game, window, game.scoreTable.xcor, game.scoreTable.ycor);
+
+		window.display();
+
+		// check that enough time has passed
+		if (game.newTime - game.pastTime > NEXT_LEVEL_COOLDOWN)
+		{
+			ChangeLevel(game);
+		}
+	}
+
 	void DrawGameOver(Game& game, sf::RenderWindow& window)
 	{
 		// update newTime timer
@@ -293,21 +350,8 @@ namespace ApplesGame
 		DrawScoreTable(game, window, game.scoreTable.xcor, game.scoreTable.ycor);
 
 		window.display();
-
-		// check that enough time has passed
-		if (game.newTime - game.pastTime > GAMEOVER_COOLDOWN_TIME)
-		{
-			// update score text
-			game.scoresText.setString(MAIN_MENU_TEXT);
-			game.scoresText.setPosition(TEXT_COORD_X, TEXT_COORD_Y);
-
-			// init and play menu music
-			game.gameMusic.music.openFromFile(SND_PATH + "credits.ogg");
-			game.gameMusic.music.play();
-
-			// change game state
-			game.gameState = GameState::Menu;
-		}
+		
+		HandlePlayerInput(game);
 	}
 
 	void DeinitializeGame(Game& gameState) {}

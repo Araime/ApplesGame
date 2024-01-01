@@ -67,6 +67,11 @@ int main()
 			DrawGameOver(game, window);
 			break;
 		}
+		case GameState::NextLevel:
+		{
+			TransitionToNextLevel(game, window);
+			break;
+		}
 		default:
 			break;
 		}

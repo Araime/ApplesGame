@@ -15,7 +15,8 @@ namespace ApplesGame
 	{
 		Menu = 0,
 		Game,
-		GameOver
+		GameOver,
+		NextLevel
 	};
 
 	struct Game
@@ -80,6 +81,8 @@ namespace ApplesGame
 
 	void RestartGame(Game& game);
 
+	void ChangeLevel(Game& game);
+
 	void HandlePlayerInput(Game& game);
 
 	void CheckCollisionWithBorders(Game& game);
@@ -91,6 +94,8 @@ namespace ApplesGame
 	void UpdateGame(Game& game, const float deltaTime, sf::RenderWindow& window);
 
 	void DrawGame(Game& game, sf::RenderWindow& window);
+
+	void TransitionToNextLevel(Game& game, sf::RenderWindow& window);
 
 	void DrawGameOver(Game& game, sf::RenderWindow& window);
 

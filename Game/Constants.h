@@ -17,7 +17,7 @@ namespace ApplesGame
 	const float ACCELERATION = 10000.f; // pixels  per seconds
 	const int NUM_APPLES = 30;
 	const float APPLE_SIZE = 25.f;
-	const float GAMEOVER_COOLDOWN_TIME = 3.f;
+	const float NEXT_LEVEL_COOLDOWN = 3.f;
 	const float MENU_BUTTON_COOLDOWN = 0.3f;
 	const int MAX_RAND_SCORE = 100;
 	const int TABLE_ROWS = 9;
