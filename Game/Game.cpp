@@ -66,10 +66,7 @@ namespace ApplesGame
 	void ResetApplesArray(Game& game)
 	{
 		// delete apples from array
-		for (auto i = game.apples.begin(); i != game.apples.end();)
-		{
-			i = game.apples.erase(i);
-		}
+		game.apples.clear();
 
 		// reset array size
 		game.apples.resize(0);
