@@ -39,6 +39,7 @@ namespace ApplesGame
 		BG menuBG;
 		BG fieldBG;
 		BG blackBG;
+		BG nextLevelBG;
 
 		// create sounds and music
 		Sound pickUpSnd;
@@ -68,6 +69,7 @@ namespace ApplesGame
 		sf::Texture menuTexture;
 		sf::Texture grassTexture;
 		sf::Texture blackTexture;
+		sf::Texture nextTexture;
 
 		// create score table
 		ScoreTable scoreTable;

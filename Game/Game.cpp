@@ -10,22 +10,24 @@ namespace ApplesGame
 		assert(game.menuTexture.loadFromFile(IMG_PATH + "Wall.png"));
 		assert(game.grassTexture.loadFromFile(IMG_PATH + "Grass.png"));
 		assert(game.blackTexture.loadFromFile(IMG_PATH + "Black.png"));
+		assert(game.nextTexture.loadFromFile(IMG_PATH + "steps.png"));
 
 		// init BG's
 		InitBG(game.menuBG, game.menuTexture);
 		InitBG(game.fieldBG, game.grassTexture);
 		InitBG(game.blackBG, game.blackTexture);
+		InitBG(game.nextLevelBG, game.nextTexture);
 
 		// init sounds
-		game.deathSnd.buffer.loadFromFile(SND_PATH + "Death.wav");
+		assert(game.deathSnd.buffer.loadFromFile(SND_PATH + "Death.wav"));
 		game.deathSnd.sound.setBuffer(game.deathSnd.buffer);
 		game.deathSnd.sound.setVolume(30.f);
 
-		game.pickUpSnd.buffer.loadFromFile(SND_PATH + "AppleEat.wav");
+		assert(game.pickUpSnd.buffer.loadFromFile(SND_PATH + "AppleEat.wav"));
 		game.pickUpSnd.sound.setBuffer(game.pickUpSnd.buffer);
 		game.pickUpSnd.sound.setVolume(50.f);
 
-		game.selectSND.buffer.loadFromFile(SND_PATH + "Select.wav");
+		assert(game.selectSND.buffer.loadFromFile(SND_PATH + "Select.wav"));
 		game.selectSND.sound.setBuffer(game.selectSND.buffer);
 		game.selectSND.sound.setVolume(70.f);
 
@@ -34,7 +36,7 @@ namespace ApplesGame
 		game.gameMusic.music.play();
 
 		// init game font
-		game.font.loadFromFile(FONTS_PATH + "Roboto-Bold.ttf");
+		assert(game.font.loadFromFile(FONTS_PATH + "Roboto-Bold.ttf"));
 
 		// init score table text
 		game.scoresText.setFont(game.font);
@@ -333,6 +335,7 @@ namespace ApplesGame
 
 		window.clear();
 
+		window.draw(game.nextLevelBG.sprite);
 		window.draw(game.scoresText);
 
 		window.display();
