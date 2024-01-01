@@ -68,6 +68,7 @@ namespace ApplesGame
 		sf::Texture grassTexture;
 		sf::Texture blackTexture;
 
+		// create score table
 		ScoreTable scoreTable;
 	};
 

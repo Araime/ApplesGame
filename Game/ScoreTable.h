@@ -15,13 +15,11 @@ namespace ApplesGame
 	struct ScoreTable
 	{
 		std::vector<TableRow> data;
+
+		void InitScoreTable(const int playerScore);
+
+		void UpdateScoreTable(const int playerScore);
 	};
 
-	void InitScoreTable(Game& game);
-
-	void UpdateScoreTable();
-
-	void DrawScoreTable();
+	void DrawScoreTable(Game& game, sf::RenderWindow& window);
 }
-
-//std::sort(std::begin(data), std::end(data), [](const Data& a, const Data& b) { return a.x_ < b.x_; });
