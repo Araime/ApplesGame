@@ -53,10 +53,10 @@ namespace ApplesGame
 		Apple apple;
 		std::vector<Apple> apples;
 
-		// create score table
+		// create score text
 		std::string score = "SCORE: ";
 		sf::Font font;
-		sf::Text scores;
+		sf::Text scoresText;
 
 		// create game mode
 		GameMode gameMode;

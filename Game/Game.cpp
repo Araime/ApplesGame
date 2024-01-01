@@ -37,13 +37,16 @@ namespace ApplesGame
 		game.font.loadFromFile(FONTS_PATH + "Roboto-Bold.ttf");
 
 		// init score table text
-		game.scores.setFont(game.font);
-		game.scores.setCharacterSize(30);
-		game.scores.setFillColor(sf::Color::Yellow);
-		game.scores.setString(MAIN_MENU_TEXT);
-		game.scores.setPosition(TEXT_COORD_X, TEXT_COORD_Y);
+		game.scoresText.setFont(game.font);
+		game.scoresText.setCharacterSize(30);
+		game.scoresText.setFillColor(sf::Color::Yellow);
+		game.scoresText.setString(MAIN_MENU_TEXT);
+		game.scoresText.setPosition(TEXT_COORD_X, TEXT_COORD_Y);
 
 		InitGameMode(game.gameMode);
+
+		// init score table
+		game.scoreTable.InitScoreTable(game.playerScore);
 
 		// update last time
 		game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
@@ -54,7 +57,7 @@ namespace ApplesGame
 		window.clear();
 
 		window.draw(game.menuBG.sprite);
-		window.draw(game.scores);
+		window.draw(game.scoresText);
 
 		DrawGameMode(game.gameMode, window);
 
@@ -95,8 +98,8 @@ namespace ApplesGame
 
 		// update game score table
 		game.playerScore = 0;
-		game.scores.setPosition(TABLE_X, TABLE_Y);
-		game.scores.setString(game.score + std::to_string(game.playerScore));
+		game.scoresText.setPosition(SCORE_XCOR, SCORE_YCOR);
+		game.scoresText.setString(game.score + std::to_string(game.playerScore));
 
 		// update game variables
 		game.gameState = GameState::Game;
@@ -173,8 +176,8 @@ namespace ApplesGame
 	{
 		if (isCollideWithBorders(game.player.position))
 		{
-			// update score table with game over text
-			game.scores.setPosition(GAMEOVER_X_COORD, TEXT_COORD_Y);
+			// update score table
+			game.scoreTable.UpdateScoreTable(game.playerScore);
 
 			// note the time
 			game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
@@ -212,7 +215,7 @@ namespace ApplesGame
 
 				// count player scores
 				++game.playerScore;
-				game.scores.setString(game.score + std::to_string(game.playerScore));
+				game.scoresText.setString(game.score + std::to_string(game.playerScore));
 
 				// increase the player's speed if option is enable
 				if (game.gameMode.mode & (1 << 1))
@@ -235,7 +238,7 @@ namespace ApplesGame
 		if (game.apples.size() == 0)
 		{
 			// update score table with game over text
-			game.scores.setPosition(GAMEOVER_X_COORD, TEXT_COORD_Y);
+			game.scoresText.setPosition(GAMEOVER_X_COORD, TEXT_COORD_Y);
 
 			// note the time
 			game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
@@ -273,7 +276,7 @@ namespace ApplesGame
 			DrawApple(apple, window);
 		}
 
-		window.draw(game.scores);
+		window.draw(game.scoresText);
 
 		window.display();
 	}
@@ -286,7 +289,8 @@ namespace ApplesGame
 		window.clear();
 
 		window.draw(game.blackBG.sprite);
-		window.draw(game.scores);
+
+
 
 		window.display();
 
@@ -294,8 +298,8 @@ namespace ApplesGame
 		if (game.newTime - game.pastTime > GAMEOVER_COOLDOWN_TIME)
 		{
 			// update score text
-			game.scores.setString(MAIN_MENU_TEXT);
-			game.scoreTable.setPosition(TEXT_COORD_X, TEXT_COORD_Y);
+			game.scoresText.setString(MAIN_MENU_TEXT);
+			game.scoresText.setPosition(TEXT_COORD_X, TEXT_COORD_Y);
 
 			// init and play menu music
 			game.gameMusic.music.openFromFile(SND_PATH + "credits.ogg");

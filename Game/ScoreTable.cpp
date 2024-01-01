@@ -21,16 +21,24 @@ namespace ApplesGame
 	void ScoreTable::UpdateScoreTable(const int playerScore)
 	{
 		// find player in score table and update score
-		std::vector<TableRow>::iterator it = std::find(data.begin(), data.end(), PLAYER_NAME);
-		data[std::distance(data.begin(), it)].score = playerScore;
+		for (auto& row : data)
+		{
+			if (row.name == PLAYER_NAME)
+			{
+				row.score = playerScore;
+				break;
+			}
+		}
 
-		// sorting score table by score
+		//// sorting score table by score
 		std::sort(std::begin(data), std::end(data), [](const TableRow& a, const TableRow& b) { return b.score < a.score; });
 	}
 
 	void DrawScoreTable(Game& game, sf::RenderWindow& window)
 	{
 
+		game.scoresText.setString(game.scoreTable.data[0].name);
+
+		window.draw(game.scoresText);
 	}
-	
 }
