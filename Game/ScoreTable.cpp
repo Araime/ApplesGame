@@ -6,6 +6,10 @@ namespace ApplesGame
 {
 	void ScoreTable::InitScoreTable(const int playerScore)
 	{
+		// init highlighter
+		highlighter.setSize(sf::Vector2f(HIGHLIGHTER_WIDTH, HIGHLIGHTER_HEIGHT));
+		highlighter.setFillColor(sf::Color::Magenta);
+
 		// add player in score table
 		TableRow player = { PLAYER_NAME, playerScore };
 		data.push_back(player);
@@ -38,6 +42,14 @@ namespace ApplesGame
 	{
 		for (auto& row : game.scoreTable.data)
 		{
+			if (row.name == PLAYER_NAME)
+			{
+				// update highlighter position
+				game.scoreTable.highlighter.setPosition(xcor - TABLE_STEP, ycor + HIGHLIGHTER_STEP);
+				window.draw(game.scoreTable.highlighter);
+			}
+			
+
 			game.scoresText.setString(row.name);
 			game.scoresText.setPosition(xcor, ycor);
 			window.draw(game.scoresText);

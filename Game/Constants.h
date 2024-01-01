@@ -37,6 +37,9 @@ namespace ApplesGame
 	const float FIRST_Y_COORD = 500.f;
 	const float SECOND_X_COORD = 450.f;
 	const float SECOND_Y_COORD = 500.f;
+	const float HIGHLIGHTER_WIDTH = 290.f;
+	const float HIGHLIGHTER_HEIGHT = 30.f;
+	const float HIGHLIGHTER_STEP = 5.f;
 
 	//  init all game texts
 	const std::string MAIN_MENU_TEXT = ("Press Arrows \nfor changing direction\n\nPress SPACE to start");
@@ -48,4 +51,5 @@ namespace ApplesGame
 	const std::string PLAYER_NAME = ("Player");
 	const std::string NAMES[] = { "Omega", "Rico", "Micro", "Alpha", "CyBot", "Pilot", "Cassandra", "Blossom", "Otto", //
 		"Duster", "Kronos", "Ultron", "Blade", "Eyebot", "Agnes", "Zen", "Automata", "Olympus", "Titan", "Cerberus" };
+	const std::string NEXT_LEVEL = ("Proceed to the next level");
 }

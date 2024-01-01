@@ -203,6 +203,8 @@ namespace ApplesGame
 
 				// change game state
 				game.gameState = GameState::Menu;
+
+				game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
 			}
 			break;
 		}
@@ -279,6 +281,10 @@ namespace ApplesGame
 			// update score table
 			game.scoreTable.UpdateScoreTable(game.playerScore);
 
+			// update score text
+			game.scoresText.setPosition(TEXT_COORD_X, TEXT_COORD_Y);
+			game.scoresText.setString(NEXT_LEVEL);
+
 			// note the time
 			game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
 
@@ -327,7 +333,7 @@ namespace ApplesGame
 
 		window.clear();
 
-		DrawScoreTable(game, window, game.scoreTable.xcor, game.scoreTable.ycor);
+		window.draw(game.scoresText);
 
 		window.display();
 

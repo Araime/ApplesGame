@@ -14,6 +14,8 @@ namespace ApplesGame
 
 	struct ScoreTable
 	{
+		sf::RectangleShape highlighter;
+
 		std::vector<TableRow> data;
 		float xcor = 280.f;
 		float ycor = 250.f;
