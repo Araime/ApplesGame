@@ -20,6 +20,7 @@ namespace ApplesGame
 	const float GAMEOVER_COOLDOWN_TIME = 3.f;
 	const float MENU_BUTTON_COOLDOWN = 0.3f;
 	const int MAX_RAND_SCORE = 100;
+	const int TABLE_ROWS = 4;
 
 	// init text coordinates
 	const int OFFSET = 20;

@@ -151,6 +151,7 @@
     <ClInclude Include="Game\GameMode.h" />
     <ClInclude Include="Game\Math.h" />
     <ClInclude Include="Game\Player.h" />
+    <ClInclude Include="Game\ScoreTable.h" />
     <ClInclude Include="Game\Sound.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
