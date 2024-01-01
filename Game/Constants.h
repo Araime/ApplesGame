@@ -19,6 +19,7 @@ namespace ApplesGame
 	const float APPLE_SIZE = 25.f;
 	const float GAMEOVER_COOLDOWN_TIME = 3.f;
 	const float MENU_BUTTON_COOLDOWN = 0.3f;
+	const int MAX_RAND_SCORE = 100;
 
 	// init text coordinates
 	const int OFFSET = 20;
@@ -41,4 +42,7 @@ namespace ApplesGame
 	const std::string FIRST_OPTION_OFF = ("Infinite apples - OFF");
 	const std::string SECOND_OPTION_ON = ("Player acceleration - ON");
 	const std::string SECOND_OPTION_OFF = ("Player acceleration - OFF");
+	const std::string PLAYER_NAME = ("Player");
+	const std::string NAMES[] = { "Omega", "Rico", "Micro", "Alpha", "CyBot", "Pilot", "Cassandra", "Blossom", "Otto", //
+		"Duster", "Kronos", "Ultron", "Blade", "Eyebot", "Agnes", "Zen", "Automata", "Olympus", "Titan", "Cerberus" };
 }
