@@ -5,8 +5,6 @@
 
 namespace ApplesGame
 {
-	struct Game;
-
 	struct BG
 	{
 		Position2D position;
