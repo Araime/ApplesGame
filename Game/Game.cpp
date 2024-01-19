@@ -43,7 +43,7 @@ void InitGame(Game& game)
 	game.scoresText.setString(MAIN_MENU_TEXT);
 	game.scoresText.setPosition(TEXT_COORD_X, TEXT_COORD_Y);
 
-	InitGameMode(game.gameMode);
+	game.gameMode.InitGameMode(game.font);
 
 	// init score table
 	game.scoreTable.InitScoreTable(game.playerScore);
@@ -59,7 +59,7 @@ void DrawTitleScreen(Game& game, sf::RenderWindow& window)
 	window.draw(game.menuBG.sprite);
 	window.draw(game.scoresText);
 
-	DrawGameMode(game.gameMode, window);
+	game.gameMode.DrawGameMode(window);
 
 	window.display();
 
@@ -148,7 +148,7 @@ void HandlePlayerInput(Game& game)
 			}
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 			{
-				ChangeMode(game.gameMode, 0);
+				game.gameMode.ChangeMode(0);
 
 				// play select sound
 				game.selectSND.sound.play();
@@ -158,7 +158,7 @@ void HandlePlayerInput(Game& game)
 			}
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 			{
-				ChangeMode(game.gameMode, 1);
+				game.gameMode.ChangeMode(1);
 
 				// play select sound
 				game.selectSND.sound.play();
