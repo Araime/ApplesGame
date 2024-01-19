@@ -3,13 +3,10 @@
 #include "Constants.h"
 #include "Math.h"
 
-namespace ApplesGame
+struct BG
 {
-	struct BG
-	{
-		Position2D position;
-		sf::Sprite sprite;
-	};
+	Position2D position;
+	sf::Sprite sprite;
+};
 
-	void InitBG(BG& bg, const sf::Texture& texture);
-}
+void InitBG(BG& bg, const sf::Texture& texture);

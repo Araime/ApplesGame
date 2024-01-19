@@ -22,8 +22,6 @@ void HandleWindowEvents(sf::RenderWindow& window)
 
 int main()
 {
-	using namespace ApplesGame;
-
 	// init randomizer with random seed
 	srand((int)time(NULL));
 

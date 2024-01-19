@@ -2,24 +2,21 @@
 #include <SFML\Graphics.hpp>
 #include "Constants.h"
 
-namespace ApplesGame
+struct GameMode
 {
-	struct GameMode
-	{
-		int mode = 0;
+	int mode = 0;
 
-		sf::Font modeFont;
+	sf::Font modeFont;
 
-		sf::Text modePopup;
-		sf::Text modeOne;
-		sf::Text modeTwo;
-	};
+	sf::Text modePopup;
+	sf::Text modeOne;
+	sf::Text modeTwo;
+};
 
-	void InitGameMode(GameMode& gameMode);
+void InitGameMode(GameMode& gameMode);
 
-	void ChangeMode(GameMode& gameMode, int bit);
+void ChangeMode(GameMode& gameMode, int bit);
 
-	void UpdateGameMode(GameMode& gameMode);
+void UpdateGameMode(GameMode& gameMode);
 
-	void DrawGameMode(GameMode& gameMode, sf::RenderWindow& window);
-}
+void DrawGameMode(GameMode& gameMode, sf::RenderWindow& window);

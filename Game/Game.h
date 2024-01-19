@@ -9,97 +9,94 @@
 #include "GameMode.h"
 #include "ScoreTable.h"
 
-namespace ApplesGame
+enum class GameState
 {
-	enum class GameState
-	{
-		Menu = 0,
-		Game,
-		GameOver,
-		NextLevel
-	};
+	Menu = 0,
+	Game,
+	GameOver,
+	NextLevel
+};
 
-	struct Game
-	{
-		// init game state
-		GameState gameState = GameState::Menu;
+struct Game
+{
+	// init game state
+	GameState gameState = GameState::Menu;
 
-		// init game over timer handlers
-		sf::Clock gameTimer;
-		float newTime = 0.f;
-		float pastTime = 0.f;
+	// init game over timer handlers
+	sf::Clock gameTimer;
+	float newTime = 0.f;
+	float pastTime = 0.f;
 
-		// init scores
-		int playerScore = 0;
+	// init scores
+	int playerScore = 0;
 
-		// init apples variable
-		int applesCount = 1;
+	// init apples variable
+	int applesCount = 1;
 
-		// create BG's
-		BG menuBG;
-		BG fieldBG;
-		BG blackBG;
-		BG nextLevelBG;
+	// create BG's
+	BG menuBG;
+	BG fieldBG;
+	BG blackBG;
+	BG nextLevelBG;
 
-		// create sounds and music
-		Sound pickUpSnd;
-		Sound deathSnd;
-		Sound selectSND;
-		Sound unselectSND;
-		Music gameMusic;
+	// create sounds and music
+	Sound pickUpSnd;
+	Sound deathSnd;
+	Sound selectSND;
+	Sound unselectSND;
+	Music gameMusic;
 
-		// create player
-		Player player;
+	// create player
+	Player player;
 
-		// create apple and apples array
-		Apple apple;
-		std::vector<Apple> apples;
+	// create apple and apples array
+	Apple apple;
+	std::vector<Apple> apples;
 
-		// create score text
-		std::string score = "SCORE: ";
-		sf::Font font;
-		sf::Text scoresText;
+	// create score text
+	std::string score = "SCORE: ";
+	sf::Font font;
+	sf::Text scoresText;
 
-		// create game mode
-		GameMode gameMode;
+	// create game mode
+	GameMode gameMode;
 
-		// create textures
-		sf::Texture playerTexture;
-		sf::Texture appleTexture;
-		sf::Texture menuTexture;
-		sf::Texture grassTexture;
-		sf::Texture blackTexture;
-		sf::Texture nextTexture;
+	// create textures
+	sf::Texture playerTexture;
+	sf::Texture appleTexture;
+	sf::Texture menuTexture;
+	sf::Texture grassTexture;
+	sf::Texture blackTexture;
+	sf::Texture nextTexture;
 
-		// create score table
-		ScoreTable scoreTable;
-	};
+	// create score table
+	ScoreTable scoreTable;
+};
 
-	void InitGame(Game& game);
+void InitGame(Game& game);
 
-	void DrawTitleScreen(Game& game, sf::RenderWindow& window);
+void DrawTitleScreen(Game& game, sf::RenderWindow& window);
 
-	void ResetApplesArray(Game& game);
+void ResetApplesArray(Game& game);
 
-	void RestartGame(Game& game);
+void RestartGame(Game& game);
 
-	void ChangeLevel(Game& game);
+void ChangeLevel(Game& game);
 
-	void HandlePlayerInput(Game& game);
+void HandlePlayerInput(Game& game);
 
-	void CheckCollisionWithBorders(Game& game);
+void CheckCollisionWithBorders(Game& game);
 
-	void CheckCollisionWithApples(Game& game, const float deltaTime);
+void CheckCollisionWithApples(Game& game, const float deltaTime);
 
-	void CheckRemainingApples(Game& game);
+void CheckRemainingApples(Game& game);
 
-	void UpdateGame(Game& game, const float deltaTime, sf::RenderWindow& window);
+void UpdateGame(Game& game, const float deltaTime, sf::RenderWindow& window);
 
-	void DrawGame(Game& game, sf::RenderWindow& window);
+void DrawGame(Game& game, sf::RenderWindow& window);
 
-	void TransitionToNextLevel(Game& game, sf::RenderWindow& window);
+void TransitionToNextLevel(Game& game, sf::RenderWindow& window);
 
-	void DrawGameOver(Game& game, sf::RenderWindow& window);
+void DrawGameOver(Game& game, sf::RenderWindow& window);
 
-	void DeinitializeGame(Game& gameState);
-}
+void DeinitializeGame(Game& gameState);

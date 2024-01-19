@@ -1,11 +1,8 @@
 #include "Background.h"
 
-namespace ApplesGame
+void InitBG(BG& bg, const sf::Texture& texture)
 {
-	void InitBG(BG& bg, const sf::Texture& texture)
-	{
-		bg.sprite.setTexture(texture);
-		SetSpriteSize(bg.sprite, float(SCREEN_WIDTH), float(SCREEN_HEIGHT));
-		bg.sprite.setPosition(0.f, 0.f);
-	}
+	bg.sprite.setTexture(texture);
+	SetSpriteSize(bg.sprite, float(SCREEN_WIDTH), float(SCREEN_HEIGHT));
+	bg.sprite.setPosition(0.f, 0.f);
 }
