@@ -2,8 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include "Math.h"
 
-struct Game;
-
 class Apple
 {
 public:

@@ -1,5 +1,4 @@
 #include "Apple.h"
-#include "Game.h"
 #include "Constants.h"
 
 void Apple::InitApple(const sf::Texture& texture)

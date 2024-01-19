@@ -1,8 +1,9 @@
 #include "Background.h"
+#include "Constants.h"
 
-void InitBG(BG& bg, const sf::Texture& texture)
+void BG::InitBG(const sf::Texture& texture)
 {
-	bg.sprite.setTexture(texture);
-	SetSpriteSize(bg.sprite, float(SCREEN_WIDTH), float(SCREEN_HEIGHT));
-	bg.sprite.setPosition(0.f, 0.f);
+	sprite.setTexture(texture);
+	SetSpriteSize(sprite, float(SCREEN_WIDTH), float(SCREEN_HEIGHT));
+	sprite.setPosition(0.f, 0.f);
 }

@@ -11,10 +11,10 @@ void InitGame(Game& game)
 	assert(game.nextTexture.loadFromFile(IMG_PATH + "steps.png"));
 
 	// init BG's
-	InitBG(game.menuBG, game.menuTexture);
-	InitBG(game.fieldBG, game.grassTexture);
-	InitBG(game.blackBG, game.blackTexture);
-	InitBG(game.nextLevelBG, game.nextTexture);
+	game.menuBG.InitBG(game.menuTexture);
+	game.fieldBG.InitBG(game.grassTexture);
+	game.blackBG.InitBG(game.blackTexture);
+	game.nextLevelBG.InitBG(game.nextTexture);
 
 	// init sounds
 	assert(game.deathSnd.buffer.loadFromFile(SND_PATH + "Death.wav"));
