@@ -83,7 +83,7 @@ void ResetApplesArray(Game& game)
 	// init apples shapes and positions
 	for (int i = 0; i < game.applesCount; i++)
 	{
-		InitApple(game.apples[i], game);
+		game.apples[i].InitApple(game.appleTexture);
 	}
 }
 
@@ -318,7 +318,7 @@ void DrawGame(Game& game, sf::RenderWindow& window)
 
 	for (auto& apple : game.apples)
 	{
-		DrawApple(apple, window);
+		apple.DrawApple(apple, window);
 	}
 
 	window.draw(game.scoresText);
