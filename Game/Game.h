@@ -83,8 +83,6 @@ void RestartGame(Game& game);
 
 void ChangeLevel(Game& game);
 
-void HandlePlayerInput(Game& game);
-
 void CheckCollisionWithBorders(Game& game);
 
 void CheckCollisionWithApples(Game& game, const float deltaTime);

@@ -13,16 +13,19 @@ enum class PlayerDirection
 	Down
 };
 
-struct Player
+class Player
 {
+public:
 	Position2D position;
 	float speed = INITIAL_SPEED;
 	PlayerDirection direction = PlayerDirection::Right;
 	sf::Sprite sprite;
+
+	void InitPlayer(const sf::Texture& texture);
+
+	void UpdatePlayer(const float deltaTime);
+
+	void HandlePlayerInput(Game& game);
+
+	void DrawPlayer(sf::RenderWindow& window);
 };
-
-void InitPlayer(Player& player, const Game& game);
-
-void UpdatePlayer(Game& game, const float deltaTime);
-
-void DrawPlayer(Player& player, sf::RenderWindow& window);

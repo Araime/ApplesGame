@@ -62,7 +62,7 @@ void DrawTitleScreen(Game& game, sf::RenderWindow& window)
 
 	window.display();
 
-	HandlePlayerInput(game);
+	game.player.HandlePlayerInput(game);
 }
 
 void ResetApplesArray(Game& game)
@@ -88,7 +88,7 @@ void ResetApplesArray(Game& game)
 
 void RestartGame(Game& game)
 {
-	InitPlayer(game.player, game);
+	game.player.InitPlayer(game.playerTexture);
 
 	// init random total apples number
 	game.applesCount = NUM_APPLES + rand() % NUM_APPLES;
@@ -110,7 +110,7 @@ void RestartGame(Game& game)
 
 void ChangeLevel(Game& game)
 {
-	InitPlayer(game.player, game);
+	game.player.InitPlayer(game.playerTexture);
 
 	// init random total apples number
 	game.applesCount = NUM_APPLES + rand() % NUM_APPLES;
@@ -127,86 +127,6 @@ void ChangeLevel(Game& game)
 
 	// init and play game music
 	game.gameMusic.PlayMusic(SND_PATH + "level5.ogg");
-}
-
-void HandlePlayerInput(Game& game)
-{
-	switch (game.gameState)
-	{
-	case GameState::Menu:
-	{
-		game.newTime = game.gameTimer.getElapsedTime().asSeconds();
-
-		if (game.newTime - game.pastTime > MENU_BUTTON_COOLDOWN)
-		{
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-			{
-				RestartGame(game);
-			}
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
-			{
-				game.gameMode.ChangeMode(0);
-
-				// play select sound
-				game.selectSND.sound.play();
-
-				// note the time
-				game.pastTime = game.newTime;
-			}
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
-			{
-				game.gameMode.ChangeMode(1);
-
-				// play select sound
-				game.selectSND.sound.play();
-
-				// note the time
-				game.pastTime = game.newTime;
-			}
-		}
-		break;
-	}
-	case GameState::Game:
-	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		{
-			game.player.direction = PlayerDirection::Right;
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-		{
-			game.player.direction = PlayerDirection::Up;
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		{
-			game.player.direction = PlayerDirection::Left;
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-		{
-			game.player.direction = PlayerDirection::Down;
-		}
-		break;
-	}
-	case GameState::GameOver:
-	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-		{
-			// update score text
-			game.scoresText.setString(MAIN_MENU_TEXT);
-			game.scoresText.setPosition(TEXT_COORD_X, TEXT_COORD_Y);
-
-			// init and play menu music
-			game.gameMusic.PlayMusic(SND_PATH + "credits.ogg");
-
-			// change game state
-			game.gameState = GameState::Menu;
-
-			game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
-		}
-		break;
-	}
-	default:
-		break;
-	}
 }
 
 void CheckCollisionWithBorders(Game& game)
@@ -294,9 +214,9 @@ void CheckRemainingApples(Game& game)
 
 void UpdateGame(Game& game, const float deltaTime, sf::RenderWindow& window)
 {
-	HandlePlayerInput(game);
+	game.player.HandlePlayerInput(game);
 
-	UpdatePlayer(game, deltaTime);
+	game.player.UpdatePlayer(deltaTime);
 
 	CheckCollisionWithBorders(game);
 
@@ -310,7 +230,7 @@ void DrawGame(Game& game, sf::RenderWindow& window)
 	window.clear();
 
 	window.draw(game.fieldBG.sprite);
-	DrawPlayer(game.player, window);
+	game.player.DrawPlayer(window);
 
 	for (auto& apple : game.apples)
 	{
@@ -354,7 +274,7 @@ void DrawGameOver(Game& game, sf::RenderWindow& window)
 
 	window.display();
 
-	HandlePlayerInput(game);
+	game.player.HandlePlayerInput(game);
 }
 
 void DeinitializeGame(Game& gameState) {}
