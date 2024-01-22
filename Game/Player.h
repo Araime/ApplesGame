@@ -3,7 +3,7 @@
 #include "Math.h"
 #include "Constants.h"
 
-struct Game;
+class Game;
 
 enum class PlayerDirection
 {

@@ -55,7 +55,7 @@ void Player::HandlePlayerInput(Game& game)
 		{
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 			{
-				RestartGame(game);
+				game.RestartGame(game);
 			}
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 			{

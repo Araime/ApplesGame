@@ -1,14 +1,27 @@
 #include "Game.h"
 #include <cassert>
 
-void InitGame(Game& game)
+void Game::LoadTexture(sf::Texture& texture, const std::string& path)
 {
-	assert(game.playerTexture.loadFromFile(IMG_PATH + "Player.png"));
-	assert(game.appleTexture.loadFromFile(IMG_PATH + "Apple.png"));
-	assert(game.menuTexture.loadFromFile(IMG_PATH + "Wall.png"));
-	assert(game.grassTexture.loadFromFile(IMG_PATH + "Grass.png"));
-	assert(game.blackTexture.loadFromFile(IMG_PATH + "Black.png"));
-	assert(game.nextTexture.loadFromFile(IMG_PATH + "steps.png"));
+	assert(texture.loadFromFile(path));
+}
+
+void Game::LoadSound(Sound& snd, const std::string& path, float volume)
+{
+	assert(snd.buffer.loadFromFile(path));
+	snd.sound.setBuffer(snd.buffer);
+	snd.sound.setVolume(volume);
+}
+
+void Game::InitGame(Game& game)
+{
+	// load all textures
+	LoadTexture(game.playerTexture, IMG_PATH + "Player.png");
+	LoadTexture(game.appleTexture, IMG_PATH + "Apple.png");
+	LoadTexture(game.menuTexture, IMG_PATH + "Wall.png");
+	LoadTexture(game.grassTexture, IMG_PATH + "Grass.png");
+	LoadTexture(game.blackTexture, IMG_PATH + "Black.png");
+	LoadTexture(game.nextTexture, IMG_PATH + "steps.png");
 
 	// init BG's
 	game.menuBG.InitBG(game.menuTexture);
@@ -17,17 +30,9 @@ void InitGame(Game& game)
 	game.nextLevelBG.InitBG(game.nextTexture);
 
 	// init sounds
-	assert(game.deathSnd.buffer.loadFromFile(SND_PATH + "Death.wav"));
-	game.deathSnd.sound.setBuffer(game.deathSnd.buffer);
-	game.deathSnd.sound.setVolume(30.f);
-
-	assert(game.pickUpSnd.buffer.loadFromFile(SND_PATH + "AppleEat.wav"));
-	game.pickUpSnd.sound.setBuffer(game.pickUpSnd.buffer);
-	game.pickUpSnd.sound.setVolume(50.f);
-
-	assert(game.selectSND.buffer.loadFromFile(SND_PATH + "Select.wav"));
-	game.selectSND.sound.setBuffer(game.selectSND.buffer);
-	game.selectSND.sound.setVolume(70.f);
+	LoadSound(game.deathSnd, SND_PATH + "Death.wav", 30.f);
+	LoadSound(game.pickUpSnd, SND_PATH + "AppleEat.wav", 50.f);
+	LoadSound(game.selectSND, SND_PATH + "Select.wav", 70.f);
 
 	// init and play menu music
 	game.gameMusic.PlayMusic(SND_PATH + "credits.ogg");
@@ -51,7 +56,7 @@ void InitGame(Game& game)
 	game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
 }
 
-void DrawTitleScreen(Game& game, sf::RenderWindow& window)
+void Game::DrawTitleScreen(Game& game, sf::RenderWindow& window)
 {
 	window.clear();
 
@@ -65,7 +70,7 @@ void DrawTitleScreen(Game& game, sf::RenderWindow& window)
 	game.player.HandlePlayerInput(game);
 }
 
-void ResetApplesArray(Game& game)
+void Game::ResetApplesArray(Game& game)
 {
 	// clear array
 	game.apples.clear();
@@ -86,7 +91,7 @@ void ResetApplesArray(Game& game)
 	}
 }
 
-void RestartGame(Game& game)
+void Game::RestartGame(Game& game)
 {
 	game.player.InitPlayer(game.playerTexture);
 
@@ -108,7 +113,7 @@ void RestartGame(Game& game)
 	game.gameMusic.PlayMusic(SND_PATH + "level5.ogg");
 }
 
-void ChangeLevel(Game& game)
+void Game::ChangeLevel(Game& game)
 {
 	game.player.InitPlayer(game.playerTexture);
 
@@ -129,7 +134,7 @@ void ChangeLevel(Game& game)
 	game.gameMusic.PlayMusic(SND_PATH + "level5.ogg");
 }
 
-void CheckCollisionWithBorders(Game& game)
+void Game::CheckCollisionWithBorders(Game& game)
 {
 	if (isCollideWithBorders(game.player.position))
 	{
@@ -150,7 +155,7 @@ void CheckCollisionWithBorders(Game& game)
 	}
 }
 
-void CheckCollisionWithApples(Game& game, const float deltaTime)
+void Game::CheckCollisionWithApples(Game& game, const float deltaTime)
 {
 	// check player collision with apples
 	for (auto i = game.apples.begin(); i != game.apples.end();)
@@ -190,7 +195,7 @@ void CheckCollisionWithApples(Game& game, const float deltaTime)
 	}
 }
 
-void CheckRemainingApples(Game& game)
+void Game::CheckRemainingApples(Game& game)
 {
 	if (game.apples.size() == 0)
 	{
@@ -212,20 +217,19 @@ void CheckRemainingApples(Game& game)
 	}
 }
 
-void UpdateGame(Game& game, const float deltaTime, sf::RenderWindow& window)
+void Game::UpdateGame(Game& game, const float deltaTime, sf::RenderWindow& window)
 {
+	// player sectiob
 	game.player.HandlePlayerInput(game);
-
 	game.player.UpdatePlayer(deltaTime);
 
+	// game section
 	CheckCollisionWithBorders(game);
-
 	CheckCollisionWithApples(game, deltaTime);
-
 	CheckRemainingApples(game);
 }
 
-void DrawGame(Game& game, sf::RenderWindow& window)
+void Game::DrawGame(Game& game, sf::RenderWindow& window)
 {
 	window.clear();
 
@@ -242,7 +246,7 @@ void DrawGame(Game& game, sf::RenderWindow& window)
 	window.display();
 }
 
-void TransitionToNextLevel(Game& game, sf::RenderWindow& window)
+void Game::TransitionToNextLevel(Game& game, sf::RenderWindow& window)
 {
 	// update newTime timer
 	game.newTime = game.gameTimer.getElapsedTime().asSeconds();
@@ -261,7 +265,7 @@ void TransitionToNextLevel(Game& game, sf::RenderWindow& window)
 	}
 }
 
-void DrawGameOver(Game& game, sf::RenderWindow& window)
+void Game::DrawGameOver(Game& game, sf::RenderWindow& window)
 {
 	// update newTime timer
 	game.newTime = game.gameTimer.getElapsedTime().asSeconds();
@@ -277,4 +281,4 @@ void DrawGameOver(Game& game, sf::RenderWindow& window)
 	game.player.HandlePlayerInput(game);
 }
 
-void DeinitializeGame(Game& gameState) {}
+void Game::DeinitializeGame(Game& gameState) {}

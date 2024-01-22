@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-struct Game;
+class Game;
 
 struct TableRow
 {

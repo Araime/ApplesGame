@@ -30,7 +30,7 @@ int main()
 
 	// game initialization
 	Game game;
-	InitGame(game);
+	game.InitGame(game);
 
 	// init game timer
 	sf::Clock gameClock;
@@ -51,23 +51,23 @@ int main()
 		{
 		case GameState::Menu:
 		{
-			DrawTitleScreen(game, window);
+			game.DrawTitleScreen(game, window);
 			break;
 		}
 		case GameState::Game:
 		{
-			UpdateGame(game, deltaTime, window);
-			DrawGame(game, window);
+			game.UpdateGame(game, deltaTime, window);
+			game.DrawGame(game, window);
 			break;
 		}
 		case GameState::GameOver:
 		{
-			DrawGameOver(game, window);
+			game.DrawGameOver(game, window);
 			break;
 		}
 		case GameState::NextLevel:
 		{
-			TransitionToNextLevel(game, window);
+			game.TransitionToNextLevel(game, window);
 			break;
 		}
 		default:
@@ -76,7 +76,7 @@ int main()
 	}
 
 	// deinitialization
-	DeinitializeGame(game);
+	game.DeinitializeGame(game);
 
 	return 0;
 }

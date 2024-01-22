@@ -17,8 +17,9 @@ enum class GameState
 	NextLevel
 };
 
-struct Game
+class Game
 {
+public:
 	// init game state
 	GameState gameState = GameState::Menu;
 
@@ -44,6 +45,7 @@ struct Game
 	Sound deathSnd;
 	Sound selectSND;
 	Sound unselectSND;
+
 	Music gameMusic;
 
 	// create player
@@ -71,30 +73,34 @@ struct Game
 
 	// create score table
 	ScoreTable scoreTable;
+
+	void LoadTexture(sf::Texture& texture, const std::string& path);
+
+	void LoadSound(Sound& snd, const std::string& path, float volume = 100.f);
+
+	void InitGame(Game& game);
+
+	void DrawTitleScreen(Game& game, sf::RenderWindow& window);
+
+	void ResetApplesArray(Game& game);
+
+	void RestartGame(Game& game);
+
+	void ChangeLevel(Game& game);
+
+	void CheckCollisionWithBorders(Game& game);
+
+	void CheckCollisionWithApples(Game& game, const float deltaTime);
+
+	void CheckRemainingApples(Game& game);
+
+	void UpdateGame(Game& game, const float deltaTime, sf::RenderWindow& window);
+
+	void DrawGame(Game& game, sf::RenderWindow& window);
+
+	void TransitionToNextLevel(Game& game, sf::RenderWindow& window);
+
+	void DrawGameOver(Game& game, sf::RenderWindow& window);
+
+	void DeinitializeGame(Game& gameState);
 };
-
-void InitGame(Game& game);
-
-void DrawTitleScreen(Game& game, sf::RenderWindow& window);
-
-void ResetApplesArray(Game& game);
-
-void RestartGame(Game& game);
-
-void ChangeLevel(Game& game);
-
-void CheckCollisionWithBorders(Game& game);
-
-void CheckCollisionWithApples(Game& game, const float deltaTime);
-
-void CheckRemainingApples(Game& game);
-
-void UpdateGame(Game& game, const float deltaTime, sf::RenderWindow& window);
-
-void DrawGame(Game& game, sf::RenderWindow& window);
-
-void TransitionToNextLevel(Game& game, sf::RenderWindow& window);
-
-void DrawGameOver(Game& game, sf::RenderWindow& window);
-
-void DeinitializeGame(Game& gameState);
