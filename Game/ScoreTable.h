@@ -1,6 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Constants.h"
 
 struct Game;
 
@@ -10,17 +9,19 @@ struct TableRow
 	int score;
 };
 
-struct ScoreTable
+class ScoreTable
 {
+public:
 	sf::RectangleShape highlighter;
 
 	std::vector<TableRow> data;
+
 	float xcor = 280.f;
 	float ycor = 250.f;
 
 	void InitScoreTable(const int playerScore);
 
 	void UpdateScoreTable(const int playerScore);
-};
 
-void DrawScoreTable(Game& game, sf::RenderWindow& window, float xcor, float ycor);
+	void DrawScoreTable(sf::Text& scoresText, sf::RenderWindow& window, float xcor, float ycor);
+};

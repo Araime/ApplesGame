@@ -354,7 +354,7 @@ void DrawGameOver(Game& game, sf::RenderWindow& window)
 
 	window.draw(game.blackBG.sprite);
 
-	DrawScoreTable(game, window, game.scoreTable.xcor, game.scoreTable.ycor);
+	game.scoreTable.DrawScoreTable(game.scoresText, window, game.scoreTable.xcor, game.scoreTable.ycor);
 
 	window.display();
 

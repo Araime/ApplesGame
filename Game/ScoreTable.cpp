@@ -36,25 +36,24 @@ void ScoreTable::UpdateScoreTable(const int playerScore)
 	std::sort(std::begin(data), std::end(data), [](const TableRow& a, const TableRow& b) { return b.score < a.score; });
 }
 
-void DrawScoreTable(Game& game, sf::RenderWindow& window, float xcor, float ycor)
+void ScoreTable::DrawScoreTable(sf::Text& scoresText, sf::RenderWindow& window, float xcor, float ycor)
 {
-	for (auto& row : game.scoreTable.data)
+	for (auto& row : data)
 	{
 		if (row.name == PLAYER_NAME)
 		{
 			// update highlighter position
-			game.scoreTable.highlighter.setPosition(xcor - TABLE_STEP, ycor + HIGHLIGHTER_STEP);
-			window.draw(game.scoreTable.highlighter);
+			highlighter.setPosition(xcor - TABLE_STEP, ycor + HIGHLIGHTER_STEP);
+			window.draw(highlighter);
 		}
 
+		scoresText.setString(row.name);
+		scoresText.setPosition(xcor, ycor);
+		window.draw(scoresText);
 
-		game.scoresText.setString(row.name);
-		game.scoresText.setPosition(xcor, ycor);
-		window.draw(game.scoresText);
-
-		game.scoresText.setString(std::to_string(row.score));
-		game.scoresText.setPosition(xcor + TABLE_INDENT, ycor);
-		window.draw(game.scoresText);
+		scoresText.setString(std::to_string(row.score));
+		scoresText.setPosition(xcor + TABLE_INDENT, ycor);
+		window.draw(scoresText);
 
 		ycor += TABLE_STEP;
 	}
