@@ -12,4 +12,6 @@ class Music
 {
 public:
 	sf::Music music;
+
+	void PlayMusic(const std::string& path);
 };

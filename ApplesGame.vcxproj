@@ -143,6 +143,7 @@
     <ClCompile Include="Game\Math.cpp" />
     <ClCompile Include="Game\Player.cpp" />
     <ClCompile Include="Game\ScoreTable.cpp" />
+    <ClCompile Include="Game\Sound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Apple.h" />

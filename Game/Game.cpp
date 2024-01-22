@@ -30,8 +30,7 @@ void InitGame(Game& game)
 	game.selectSND.sound.setVolume(70.f);
 
 	// init and play menu music
-	game.gameMusic.music.openFromFile(SND_PATH + "credits.ogg");
-	game.gameMusic.music.play();
+	game.gameMusic.PlayMusic(SND_PATH + "credits.ogg");
 
 	// init game font
 	assert(game.font.loadFromFile(FONTS_PATH + "Roboto-Bold.ttf"));
@@ -106,8 +105,7 @@ void RestartGame(Game& game)
 	game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
 
 	// init and play game music
-	game.gameMusic.music.openFromFile(SND_PATH + "level5.ogg");
-	game.gameMusic.music.play();
+	game.gameMusic.PlayMusic(SND_PATH + "level5.ogg");
 }
 
 void ChangeLevel(Game& game)
@@ -128,8 +126,7 @@ void ChangeLevel(Game& game)
 	game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
 
 	// init and play game music
-	game.gameMusic.music.openFromFile(SND_PATH + "level5.ogg");
-	game.gameMusic.music.play();
+	game.gameMusic.PlayMusic(SND_PATH + "level5.ogg");
 }
 
 void HandlePlayerInput(Game& game)
@@ -198,8 +195,7 @@ void HandlePlayerInput(Game& game)
 			game.scoresText.setPosition(TEXT_COORD_X, TEXT_COORD_Y);
 
 			// init and play menu music
-			game.gameMusic.music.openFromFile(SND_PATH + "credits.ogg");
-			game.gameMusic.music.play();
+			game.gameMusic.PlayMusic(SND_PATH + "credits.ogg");
 
 			// change game state
 			game.gameState = GameState::Menu;

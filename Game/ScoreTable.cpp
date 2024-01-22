@@ -1,6 +1,6 @@
-#include<algorithm>
+#include <algorithm>
 #include "ScoreTable.h"
-#include "Game.h"
+#include "Constants.h"
 
 void ScoreTable::InitScoreTable(const int playerScore)
 {
