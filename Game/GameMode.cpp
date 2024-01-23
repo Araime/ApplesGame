@@ -12,19 +12,19 @@ void GameMode::InitGameMode(sf::Font& font)
 
 	// init mode texts
 	modePopup.setFont(modeFont);
-	modePopup.setCharacterSize(30);
+	modePopup.setCharacterSize(BIG_TEXT);
 	modePopup.setFillColor(sf::Color::Yellow);
 	modePopup.setString(OPTIONS_POPUP);
 	modePopup.setPosition(POPUP_X_COORD, POPUP_Y_COORD);
 
 	modeOne.setFont(modeFont);
-	modeOne.setCharacterSize(28);
+	modeOne.setCharacterSize(OPTION_TEXT);
 	modeOne.setFillColor(sf::Color::Green);
 	modeOne.setString(FIRST_OPTION_ON);
 	modeOne.setPosition(FIRST_X_COORD, FIRST_Y_COORD);
 
 	modeTwo.setFont(modeFont);
-	modeTwo.setCharacterSize(28);
+	modeTwo.setCharacterSize(OPTION_TEXT);
 	modeTwo.setFillColor(sf::Color::Green);
 	modeTwo.setString(SECOND_OPTION_ON);
 	modeTwo.setPosition(SECOND_X_COORD, SECOND_Y_COORD);

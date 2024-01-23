@@ -20,7 +20,7 @@ const float MENU_BUTTON_COOLDOWN = 0.3f;
 const int MAX_RAND_SCORE = 100;
 const int TABLE_ROWS = 9;
 
-// init text coordinates
+// init texts coordinates and setting
 const int OFFSET = 20;
 const float SCORE_XCOR = SCREEN_WIDTH / 2.f - 70.f; // score table x coordinate
 const float SCORE_YCOR = 5.f; // score table y coordinate
@@ -38,6 +38,8 @@ const float SECOND_Y_COORD = 500.f;
 const float HIGHLIGHTER_WIDTH = 290.f;
 const float HIGHLIGHTER_HEIGHT = 30.f;
 const float HIGHLIGHTER_STEP = 5.f;
+const int BIG_TEXT = 30;
+const int OPTION_TEXT = 28;
 
 //  init all game texts
 const std::string MAIN_MENU_TEXT = ("Press Arrows \nfor changing direction\n\nPress SPACE to start");

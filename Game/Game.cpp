@@ -29,12 +29,12 @@ void Game::InitGame(Game& game)
 	game.blackBG.InitBG(game.blackTexture);
 	game.nextLevelBG.InitBG(game.nextTexture);
 
-	// init sounds
+	// load sounds
 	LoadSound(game.deathSnd, SND_PATH + "Death.wav", 30.f);
 	LoadSound(game.pickUpSnd, SND_PATH + "AppleEat.wav", 50.f);
 	LoadSound(game.selectSND, SND_PATH + "Select.wav", 70.f);
 
-	// init and play menu music
+	// load and play menu music
 	game.gameMusic.PlayMusic(SND_PATH + "credits.ogg");
 
 	// init game font
@@ -42,7 +42,7 @@ void Game::InitGame(Game& game)
 
 	// init score table text
 	game.scoresText.setFont(game.font);
-	game.scoresText.setCharacterSize(30);
+	game.scoresText.setCharacterSize(BIG_TEXT);
 	game.scoresText.setFillColor(sf::Color::Yellow);
 	game.scoresText.setString(MAIN_MENU_TEXT);
 	game.scoresText.setPosition(TEXT_COORD_X, TEXT_COORD_Y);
