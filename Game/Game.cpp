@@ -78,16 +78,11 @@ void Game::ResetApplesArray(Game& game)
 	// reset array size
 	game.apples.resize(0);
 
-	// create apples array
+	// create apples array, init apples shapes and positions
 	for (int i = 0; i < game.applesCount; i++)
 	{
+		game.apple.InitApple(game.appleTexture);
 		game.apples.push_back(game.apple);
-	}
-
-	// init apples shapes and positions
-	for (int i = 0; i < game.applesCount; i++)
-	{
-		game.apples[i].InitApple(game.appleTexture);
 	}
 }
 
