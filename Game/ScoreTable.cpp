@@ -15,7 +15,7 @@ void ScoreTable::InitScoreTable(const int playerScore)
 	// generate random scores and names and add it to score table
 	for (int i = 0; i < TABLE_ROWS; i++)
 	{
-		TableRow new_row = { NAMES[rand() % int(sizeof(NAMES) / sizeof(NAMES[0]))] , rand() % MAX_RAND_SCORE };
+		TableRow new_row = { NAMES[rand() % static_cast<int>(sizeof(NAMES) / sizeof(NAMES[0]))] , rand() % MAX_RAND_SCORE };
 		data.push_back(new_row);
 	}
 }

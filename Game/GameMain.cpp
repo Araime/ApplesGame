@@ -23,7 +23,7 @@ void HandleWindowEvents(sf::RenderWindow& window)
 int main()
 {
 	// init randomizer with random seed
-	srand((int)time(NULL));
+	srand(static_cast<int>(time(NULL)));
 
 	// init window
 	sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Apples game!");
