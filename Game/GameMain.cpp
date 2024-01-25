@@ -13,10 +13,6 @@ void HandleWindowEvents(sf::RenderWindow& window)
 		{
 			window.close();
 		}
-		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-		{
-			window.close();
-		}
 	}
 }
 
@@ -68,6 +64,11 @@ int main()
 		case GameState::NextLevel:
 		{
 			game.TransitionToNextLevel(game, window);
+			break;
+		}
+		case GameState::ExitDialog:
+		{
+			game.DrawExitDialog(game, window);
 			break;
 		}
 		default:

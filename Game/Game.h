@@ -14,7 +14,8 @@ enum class GameState
 	Menu = 0,
 	Game,
 	GameOver,
-	NextLevel
+	NextLevel,
+	ExitDialog
 };
 
 class Game
@@ -101,6 +102,8 @@ public:
 	void TransitionToNextLevel(Game& game, sf::RenderWindow& window);
 
 	void DrawGameOver(Game& game, sf::RenderWindow& window);
+
+	void DrawExitDialog(Game& game, sf::RenderWindow& window);
 
 	void DeinitializeGame(Game& gameState);
 };

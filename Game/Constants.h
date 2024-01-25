@@ -52,3 +52,4 @@ const std::string PLAYER_NAME = ("Player");
 const std::string NAMES[] = { "Omega", "Rico", "Micro", "Alpha", "CyBot", "Pilot", "Cassandra", "Blossom", "Otto", //
 	"Duster", "Kronos", "Ultron", "Blade", "Eyebot", "Agnes", "Zen", "Automata", "Olympus", "Titan", "Cerberus" };
 const std::string NEXT_LEVEL = ("Proceed to the next level");
+const std::string EXIT_DIALOG_TEXT = ("Are you sure you want to exit? \nSpace - no, Enter - yes.");

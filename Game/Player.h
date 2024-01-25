@@ -25,7 +25,7 @@ public:
 
 	void UpdatePlayer(const float deltaTime);
 
-	void HandlePlayerInput(Game& game);
+	void HandlePlayerInput(Game& game, sf::RenderWindow& window);
 
 	void DrawPlayer(sf::RenderWindow& window);
 };

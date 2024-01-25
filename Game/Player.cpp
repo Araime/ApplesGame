@@ -43,7 +43,7 @@ void Player::UpdatePlayer(const float deltaTime)
 	}
 }
 
-void Player::HandlePlayerInput(Game& game)
+void Player::HandlePlayerInput(Game& game, sf::RenderWindow& window)
 {
 	switch (game.gameState)
 	{
@@ -98,6 +98,14 @@ void Player::HandlePlayerInput(Game& game)
 		{
 			game.player.direction = PlayerDirection::Down;
 		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			// update score text
+			game.scoresText.setPosition(TEXT_COORD_X, TEXT_COORD_X);
+			game.scoresText.setString(EXIT_DIALOG_TEXT);
+
+			game.gameState = GameState::ExitDialog;
+		}
 		break;
 	}
 	case GameState::GameOver:
@@ -117,6 +125,24 @@ void Player::HandlePlayerInput(Game& game)
 			game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
 		}
 		break;
+	}
+	case GameState::ExitDialog:
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+		{
+			window.close();
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			// update score text
+			game.scoresText.setPosition(SCORE_XCOR, SCORE_YCOR);
+			game.scoresText.setString(game.score + std::to_string(game.playerScore));
+
+			// change game state
+			game.gameState = GameState::Game;
+
+			game.pastTime = game.gameTimer.getElapsedTime().asSeconds();
+		}
 	}
 	default:
 		break;

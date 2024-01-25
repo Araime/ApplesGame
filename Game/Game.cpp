@@ -67,7 +67,7 @@ void Game::DrawTitleScreen(Game& game, sf::RenderWindow& window)
 
 	window.display();
 
-	game.player.HandlePlayerInput(game);
+	game.player.HandlePlayerInput(game, window);
 }
 
 void Game::ResetApplesArray(Game& game)
@@ -215,7 +215,7 @@ void Game::CheckRemainingApples(Game& game)
 void Game::UpdateGame(Game& game, const float deltaTime, sf::RenderWindow& window)
 {
 	// player sectiob
-	game.player.HandlePlayerInput(game);
+	game.player.HandlePlayerInput(game, window);
 	game.player.UpdatePlayer(deltaTime);
 
 	// game section
@@ -273,7 +273,18 @@ void Game::DrawGameOver(Game& game, sf::RenderWindow& window)
 
 	window.display();
 
-	game.player.HandlePlayerInput(game);
+	game.player.HandlePlayerInput(game, window);
+}
+
+void Game::DrawExitDialog(Game& game, sf::RenderWindow& window)
+{
+	window.clear();
+
+	window.draw(game.scoresText);
+
+	window.display();
+
+	game.player.HandlePlayerInput(game, window);
 }
 
 void Game::DeinitializeGame(Game& gameState) {}
