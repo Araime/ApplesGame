@@ -8,50 +8,45 @@ void ScoreTable::InitScoreTable(const int playerScore)
 	highlighter.setSize(sf::Vector2f(HIGHLIGHTER_WIDTH, HIGHLIGHTER_HEIGHT));
 	highlighter.setFillColor(sf::Color::Magenta);
 
-	// add player in score table
-	TableRow player = { PLAYER_NAME, playerScore };
-	data.push_back(player);
+	data[PLAYER_NAME] = 0;
 
 	// generate random scores and names and add it to score table
 	for (int i = 0; i < TABLE_ROWS; i++)
 	{
-		TableRow new_row = { NAMES[rand() % static_cast<int>(sizeof(NAMES) / sizeof(NAMES[0]))] , rand() % MAX_RAND_SCORE };
-		data.push_back(new_row);
+		data[NAMES[rand() % static_cast<int>(sizeof(NAMES) / sizeof(NAMES[0]))]] = rand() % MAX_RAND_SCORE;
 	}
 }
 
 void ScoreTable::UpdateScoreTable(const int playerScore)
 {
-	// find player in score table and update score
-	for (auto& row : data)
-	{
-		if (row.name == PLAYER_NAME)
-		{
-			row.score = playerScore;
-			break;
-		}
-	}
-
-	//// sorting score table by score
-	std::sort(std::begin(data), std::end(data), [](const TableRow& a, const TableRow& b) { return b.score < a.score; });
+	data[PLAYER_NAME] = std::max(data[PLAYER_NAME], playerScore);
 }
 
 void ScoreTable::DrawScoreTable(sf::Text& scoresText, sf::RenderWindow& window, float xcor, float ycor)
 {
-	for (auto& row : data)
+	// create multimap for sorting by scores
+	std::multimap<int, std::string, std::greater<int>> sortedData;
+
+	// add scores in multimap
+	for (const auto& item : data)
 	{
-		if (row.name == PLAYER_NAME)
+		sortedData.insert(make_pair(item.second, item.first));
+	}
+
+	for (const auto& item : sortedData)
+	{
+		if (item.second == PLAYER_NAME)
 		{
 			// update highlighter position
 			highlighter.setPosition(xcor - TABLE_STEP, ycor + HIGHLIGHTER_STEP);
 			window.draw(highlighter);
 		}
 
-		scoresText.setString(row.name);
+		scoresText.setString(item.second);
 		scoresText.setPosition(xcor, ycor);
 		window.draw(scoresText);
 
-		scoresText.setString(std::to_string(row.score));
+		scoresText.setString(std::to_string(item.first));
 		scoresText.setPosition(xcor + TABLE_INDENT, ycor);
 		window.draw(scoresText);
 

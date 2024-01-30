@@ -1,20 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-
-class Game;
-
-struct TableRow
-{
-	std::string name;
-	int score;
-};
+#include <unordered_map>
 
 class ScoreTable
 {
 public:
 	sf::RectangleShape highlighter;
 
-	std::vector<TableRow> data;
+	std::unordered_map<std::string, int> data;
 
 	float xcor = 280.f;
 	float ycor = 250.f;
